@@ -72,6 +72,7 @@ ResourceManager res = {
 MiningConfig mc = {
     .node = NULL,
     .port = 0,
+    .name = NULL,
     .difficulty = NULL,
     .rig_id = NULL,
     .iot = false,
@@ -263,7 +264,7 @@ void get_node(char** ip, int* port, char** name) {
                     i++;
                 }
             }
-            else if (strncmp(json_copy + tokens[i].start, "port", tokens[i].end - tokens[i].start) == 0) {
+            if (strncmp(json_copy + tokens[i].start, "port", tokens[i].end - tokens[i].start) == 0) {
                 if (i + 1 < ret) {
                     char port_str[16];
                     int length = tokens[i + 1].end - tokens[i + 1].start;
@@ -273,7 +274,7 @@ void get_node(char** ip, int* port, char** name) {
                     i++;
                 }
             }
-            else if (strncmp(json_copy + tokens[i].start, "name", tokens[i].end - tokens[i].start) == 0) {
+            if (strncmp(json_copy + tokens[i].start, "name", tokens[i].end - tokens[i].start) == 0) {
                 if (i + 1 < ret) {
                     char name_str[32];
                     int length = tokens[i + 1].end - tokens[i + 1].start;
@@ -284,8 +285,13 @@ void get_node(char** ip, int* port, char** name) {
                     i++;
                 }
             }
+        } else {
+            if(json_copy) free(json_copy);
+            if(chunk.memory) free(chunk.memory);
+            cleanup("Failed to retrieve node information from the server");
         }
     }
+    
     if(chunk.memory) free(chunk.memory);
     if(json_copy) free(json_copy);
 }
