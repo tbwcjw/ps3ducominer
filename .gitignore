@@ -1,0 +1,8 @@
+.vscode
+*.code-workspace
+build
+release
+*.elf
+*.self
+*.pkg
+*.zip
