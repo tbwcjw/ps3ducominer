@@ -80,6 +80,14 @@ If you are using PS3LoadX to send <code>.self, .pkg</code> files to the PS3 set 
 <hr>
 <h3>Building</h3>
 You will need to build and install the psl1ght toolchain, including ps3libraries, as well as pthread-emb-ps3.
+<h4>Installation of required library <code>tiny3d</code></h4>
+
+<p>Source: <a href='https://github.com/crystalct/tiny3D'>https://github.com/crystalct/tiny3D</a>
+
+<b>Build & Install</b>:
+<pre><code>cd tiny3D
+make
+</code></pre>
 
 <h4>Installation of required library <code>pthread-emb-ps3</code></h4>
 
@@ -115,6 +123,7 @@ make cmake-install
 </p>
 
 ### Credits:
+<p>tiny3d 2.0 + libfont: <a href='https://github.com/crystalct/tiny3D'>crystalct/tiny3D</a></p>
 <p>pthread-emb-ps3 (pthread library for psl1ght): <a href='https://github.com/humbertodias/pthread-emb-ps3'>humbertodias/pthread-emb-ps3</a></p>
 <p>jsmn (json parser): <a href='https://github.com/zserge/jsmn'>zserge/jsmn</a></p>
 
