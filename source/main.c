@@ -5,7 +5,9 @@
 #include <ppu-lv2.h>
 #include <sys/thread.h>
 #include <pthread.h>
+#ifdef PS3LOADX
 #include <sys/process.h>
+#endif
 #include <io/pad.h>
 
 #include <sysutil/msg.h>
@@ -285,13 +287,12 @@ void get_node(char** ip, int* port, char** name) {
                     i++;
                 }
             }
-        } else {
-            if(json_copy) free(json_copy);
-            if(chunk.memory) free(chunk.memory);
-            cleanup("Failed to retrieve node information from the server");
         }
     }
-    
+    if(!mc.node || !mc.port) {
+        cleanup("Failed to retrieve node information from the server");
+    }
+
     if(chunk.memory) free(chunk.memory);
     if(json_copy) free(json_copy);
 }
