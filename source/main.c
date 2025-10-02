@@ -298,7 +298,6 @@ void get_node(char** ip, int* port, char** name) {
 }
 
 void parse_config_file(MiningConfig* config) {
-    printf("Reading %s\n", CONFIG_FILE);
     FILE* file = fopen(CONFIG_FILE, "r");
     if (file == NULL) {     //file doesnt exist
         netDebug("config file not found. creating it, will go to cleanup after.");
