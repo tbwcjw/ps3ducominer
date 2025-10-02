@@ -11,11 +11,10 @@
 #include <net/net.h>
 #include <netinet/in.h>
 
-static int SocketFD;
+static int SocketFD = -1;
 void netDebugInit() {
 	#ifdef DEBUG 
 	struct sockaddr_in stSockAddr;
-	netInitialize();
 	SocketFD = netSocket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	memset(&stSockAddr, 0, sizeof stSockAddr);
 
@@ -27,12 +26,11 @@ void netDebugInit() {
 }
 
 void netDebug(const char* fmt, ...) {
-	#ifdef DEBUG 
+	if(SocketFD < 0) return;
 	char buffer[0x800];
   	va_list arg;
   	va_start (arg, fmt);
   	vsnprintf (buffer, sizeof (buffer), fmt, arg);
 	va_end (arg);
 	netSend(SocketFD, buffer, strlen(buffer), 0);
-	#endif
 }

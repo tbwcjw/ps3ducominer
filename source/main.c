@@ -19,7 +19,7 @@
 #include <netdb.h>
 #include <time.h>
 #include <polarssl/sha1.h>
-
+#include <net/net.h>
 #include <rsx/gcm_sys.h>
 #include <ppu-types.h>
 
@@ -810,6 +810,8 @@ int main(int argc, const char* argv[]) {
     SetFontColor (WHITE, BLACK);
     SetFontAutoCenter(0);
 
+ 
+    netInitialize();
     netDebugInit();
     netDebug("Hello!");
 
