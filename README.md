@@ -59,12 +59,39 @@
         <tr>
             <td><code>threads</code></td>
             <td><code>int</code><br></td>
-            <td>Number of threads to mine on. Between 1 and 6.</td>
+            <td>Number of threads to mine on. Between 1 and 3*.</td>
         </tr>
         <tr>
             <td><code>web_dashboard</code></td>
             <td><code>bool</code><br></td>
             <td>Either <code>true</code> or <code>false</code>. The web dashboard will run on port 8080 of the PS3's IP address.</td>
+        </tr>
+    </tbody>
+</table>
+*Limited threads to 3, as we get on average 0.52Mh with 3 threads. The Kolka system will diminish our returns by increasing difficulty should we go any harder. This is a nice middleground in terms of efficiency.
+<hr>
+<h3>Benchmarking Results</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Device/Version</th>
+            <th>App version</th>
+            <th>CFLAGS</th>
+            <th>Threads</th>
+            <th>Shares /1hr</th>
+            <th>Avg. Hashrate (estimated)</th>
+            <th>Avg. Difficulty</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code>CECH-2001A</code> / <code>4.92 Evilnat (CEX)</code></td>
+            <td><code>V1.00</code></td>
+            <td><code>N/A</code> (release)</td>
+            <td>3</td>
+            <td>1129</td>
+            <td>546.93 kH/s</td>
+            <td>33500~</td>
         </tr>
     </tbody>
 </table>
@@ -112,7 +139,6 @@ make cmake-install
 <p>to read:</p>
 
 <pre><code>#define sysAtomicSwap(v, newv) (xchg(&((v)->counter), newv))</code></pre>
-
 <hr>
 <h3>Screenshots</h3>
 <p align="center">
