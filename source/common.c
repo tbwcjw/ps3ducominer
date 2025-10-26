@@ -64,7 +64,17 @@ int get_software_version() {
 
 void get_time_string(char* buffer, size_t size) {
     uint64_t secs = 0, nsecs = 0;
-    lv2syscall2(145, (u64)&secs, (u64)&nsecs);
+    int timezone, summertime = 0;
+    
+    {
+        lv2syscall2(145, (u64)&secs, (u64)&nsecs); //time in seconds
+    }
+    {
+        lv2syscall2(144, &timezone, &summertime); //timezone info
+    }
+    
+    int localized = (timezone + summertime);
+    secs += (int64_t)localized * 60;
 
     struct tm timeinfo;
     gmtime_r((time_t*)&secs, &timeinfo);

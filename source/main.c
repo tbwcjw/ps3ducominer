@@ -313,7 +313,7 @@ void parse_config_file(MiningConfig* config) {
         fprintf(file, "difficulty:LOW\n"); //default to recommended
         fprintf(file, "rig_id:ps3ducominer\n"); //default to something nice
         fprintf(file, "threads:1\n"); //single threaded recommended
-        fprintf(file, "web_dashboard:\n");
+        fprintf(file, "web_dashboard:false\n");
         fprintf(file, "iot:false"); //default false
         fclose(file);
         cleanup("A config file was created at %s. Please set values and restart the application.", CONFIG_FILE);
@@ -846,7 +846,7 @@ int main(int argc, const char* argv[]) {
     int exit_requested = 0;
 
     //make these into proper memory values
-    char node[28];
+    char node[64];
     char timestr[34];
     char fanspeed[27];
     char temps[23];
@@ -855,7 +855,7 @@ int main(int argc, const char* argv[]) {
     char rig_id[256];
     char totalshares[30];
     char lastshare[28];
-    char percentage[65];
+    char percentage[128];
     char blocks[27];
     char numthreads[13];
     char thread_lines[mc.threads][4][106]; //1 per buffer, 4 lines (3+1 lb), 256 size
@@ -883,7 +883,7 @@ int main(int argc, const char* argv[]) {
         time(&current_time);
 
         //create our strings
-        if (difftime(current_time, last_update) >= 2) {
+        if (difftime(current_time, last_update) >= 1) { //1 second update
             last_update = current_time;
             //calculate aggregate scores actross threads
             mr.avg_difficulty = 0;
@@ -902,7 +902,7 @@ int main(int argc, const char* argv[]) {
             mr.avg_difficulty = (float)mr.total_difficulty / mc.threads;
             //build our strings
             if(mc.name != NULL) {
-                sprintf(node, "Node: %s", mc.name);
+                sprintf(node, "Node: %s (%s)", mc.name, mc.node);
             } else {
                 sprintf(node, "Node: %s:%i", mc.node, mc.port);
             }
@@ -924,9 +924,10 @@ int main(int argc, const char* argv[]) {
             sprintf(rig_id, "Rig ID: %s", mc.rig_id);
             sprintf(totalshares, "Total Shares: %i",  res.total_shares);
             sprintf(lastshare, "Last Share: %i", res.last_share);
-            sprintf(percentage, "Accepted: %i/%i Rejected",
+            sprintf(percentage, "Accepted: %i/%i Rejected (%.2f percent)",
             mr.good_shares,
-            mr.bad_shares
+            mr.bad_shares,
+            (res.total_shares > 0) ? (100.0 * mr.good_shares / res.total_shares) : 0.0
             );
             sprintf(blocks, "Blocks Found: %i",  mr.blocks);
             sprintf(numthreads, "Threads (%i)", mc.threads);
