@@ -36,11 +36,6 @@ int num_digits(int n) {
     return count;
 }
 
-void patch_prot_checks() {
-	lv2syscall2(9, 0x16fb64, 0x2f80000048000050ULL);
-}
-
-
 int get_temp(int proc, uint32_t *temp) {
 	//0 - cell
 	//1 - rsx

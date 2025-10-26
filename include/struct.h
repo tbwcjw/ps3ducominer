@@ -1,7 +1,7 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
-#include <stdint.h>  // for uint32_t
+#include <stdint.h>
 #include <signal.h>
 
 #include <sys/mutex.h>

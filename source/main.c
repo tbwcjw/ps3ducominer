@@ -49,7 +49,7 @@
 #define WHITE       0xFFFFFFFF
 #define BLACK       0x00000000
 
-#define FONT_X 12
+#define FONT_X 7
 #define FONT_Y 12
 #define LINE_PADDING 2
 #define LINE_HEIGHT (FONT_Y + 2 * LINE_PADDING)
@@ -768,31 +768,29 @@ void draw_ordered_tree_item(uint32_t color, uint32_t ncolor, int sy, int header,
 
 void draw_logo() {
     SetFontColor(DUCO_ORANGE, BLACK);
-    DrawString(480, NEXT_LINE(0, 0),    "          ##########          ");
-    DrawString(480, NEXT_LINE(0, 1),    "      ##################      ");
-    DrawString(480, NEXT_LINE(0, 2),    "    ######################    ");
-    DrawString(480, NEXT_LINE(0, 3),    "   #######         ########   ");
-    DrawString(480, NEXT_LINE(0, 4),    "  ###############    #######  ");
-    DrawString(480, NEXT_LINE(0, 5),    " #########       ###   ###### ");
-    DrawString(480, NEXT_LINE(0, 6),    " ##############   ##   ###### ");
-    DrawString(480, NEXT_LINE(0, 7),    " ##############   ##   ###### ");
-    DrawString(480, NEXT_LINE(0, 8),    " #########       ###   ###### ");
-    DrawString(480, NEXT_LINE(0, 9),    "  ###############    #######  ");
-    DrawString(480, NEXT_LINE(0, 10),   "   #######         ########   ");
-    DrawString(480, NEXT_LINE(0, 11),   "    ######################    ");
-    DrawString(480, NEXT_LINE(0, 12),   "      ##################      ");
-    DrawString(480, NEXT_LINE(0, 13),   "          ##########          ");
+    DrawString(600, NEXT_LINE(0, 0),    "          ##########          ");
+    DrawString(600, NEXT_LINE(0, 1),    "      ##################      ");
+    DrawString(600, NEXT_LINE(0, 2),    "    ######################    ");
+    DrawString(600, NEXT_LINE(0, 3),    "   #######         ########   ");
+    DrawString(600, NEXT_LINE(0, 4),    "  ###############    #######  ");
+    DrawString(600, NEXT_LINE(0, 5),    " #########       ###   ###### ");
+    DrawString(600, NEXT_LINE(0, 6),    " ##############   ##   ###### ");
+    DrawString(600, NEXT_LINE(0, 7),    " ##############   ##   ###### ");
+    DrawString(600, NEXT_LINE(0, 8),    " #########       ###   ###### ");
+    DrawString(600, NEXT_LINE(0, 9),    "  ###############    #######  ");
+    DrawString(600, NEXT_LINE(0, 10),   "   #######         ########   ");
+    DrawString(600, NEXT_LINE(0, 11),   "    ######################    ");
+    DrawString(600, NEXT_LINE(0, 12),   "      ##################      ");
+    DrawString(600, NEXT_LINE(0, 13),   "          ##########          ");
     SetFontColor(LIGHT_GREY, BLACK);
-    DrawString(480, NEXT_LINE(0, 14),   "github.com/tbwcjw/ps3ducominer");
+    DrawString(600, NEXT_LINE(0, 14),   "github.com/tbwcjw/ps3ducominer");
 }
 
 void xmb_event(u64 status, u64 param, void *userdata) {
     res.pause_mining = (status == SYSUTIL_DRAW_BEGIN || status == SYSUTIL_MENU_OPEN);
 }
 
-
 int main(int argc, const char* argv[]) {
-    patch_prot_checks();
     sysUtilRegisterCallback (0, xmb_event, NULL);
 
     tiny3d_Init (1024*1024);
@@ -810,7 +808,6 @@ int main(int argc, const char* argv[]) {
     SetFontColor (WHITE, BLACK);
     SetFontAutoCenter(0);
 
- 
     netInitialize();
     netDebugInit();
     netDebug("Hello!");
@@ -1001,7 +998,7 @@ int main(int argc, const char* argv[]) {
 
         //version string x.xx
         SetFontColor(DARK_GREY, BLACK);
-        DrawFormatString(680, 512, "Version %s", VERSION);
+        DrawFormatString(720, 512, "Version %s", VERSION);
         SetFontColor(WHITE, BLACK);
         tiny3d_Flip();
     }
