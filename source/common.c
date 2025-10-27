@@ -70,7 +70,7 @@ void get_time_string(char* buffer, size_t size) {
         lv2syscall2(145, (u64)&secs, (u64)&nsecs); //time in seconds
     }
     {
-        lv2syscall2(144, &timezone, &summertime); //timezone info
+        lv2syscall2(144, (u64)&timezone, (u64)&summertime); //timezone info
     }
     
     int localized = (timezone + summertime);

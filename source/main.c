@@ -313,7 +313,7 @@ void parse_config_file(MiningConfig* config) {
         fprintf(file, "difficulty:LOW\n"); //default to recommended
         fprintf(file, "rig_id:ps3ducominer\n"); //default to something nice
         fprintf(file, "threads:1\n"); //single threaded recommended
-        fprintf(file, "web_dashboard:false\n");
+        fprintf(file, "web_dashboard:false\n"); //default false
         fprintf(file, "iot:false"); //default false
         fclose(file);
         cleanup("A config file was created at %s. Please set values and restart the application.", CONFIG_FILE);
