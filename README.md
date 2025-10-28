@@ -139,6 +139,7 @@ make cmake-install
 <p>to read:</p>
 
 <pre><code>#define sysAtomicSwap(v, newv) (xchg(&((v)->counter), newv))</code></pre>
+<p>Now the libraries are installed, building ps3ducominer is as easy as running <code>make</code>, this will output <code>.self/.elf</code> files. <code>make pkg</code> will output <code>.pkg</code> files, and <code>make release</code> will create a zipped folder containing the built <code>.pkg</code>, also included is a copy of the LICENSE, and README files.</p>
 <hr>
 <h3>Screenshots</h3>
 <p align="center">
