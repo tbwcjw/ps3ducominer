@@ -124,6 +124,25 @@ make
 <pre><code>make cmake-build
 make cmake-install
 </code></pre>
+<p>If you encountered this error:</p>
+<pre><code>CMake Error in CMakeLists.txt:
+  No cmake_minimum_required command is present.  A line of code such as
+
+    cmake_minimum_required(VERSION 4.2)
+
+  should be added at the top of the file.  The version specified may be lower
+  if you wish to support older CMake versions for this project.  For more
+  information run "cmake --help-policy CMP0000".
+
+
+-- Configuring incomplete, errors occurred!
+make: *** [Makefile:8: cmake-build] Error 1</code></pre>
+
+<p>Prepend this line to CMakeLists.txt in the root of the pthread-emb-ps3 repo:</p>
+
+<pre><code>cmake_minimum_required(VERSION 3.14)</code></pre>
+
+<p>Alternatively, use my fork: <a href='https://github.com/tbwcjw/pthread-emb-ps3'>https://github.com/tbwcjw/pthread-emb-ps3</a>.</p>
 
 <p>If you encountered this error:</p>
 
@@ -140,6 +159,7 @@ make cmake-install
 
 <pre><code>#define sysAtomicSwap(v, newv) (xchg(&((v)->counter), newv))</code></pre>
 <p>Now the libraries are installed, building ps3ducominer is as easy as running <code>make</code>, this will output <code>.self/.elf</code> files. <code>make pkg</code> will output <code>.pkg</code> files, and <code>make release</code> will create a zipped folder containing the built <code>.pkg</code>, also included is a copy of the LICENSE, and README files.</p>
+
 <hr>
 <h3>Screenshots</h3>
 <p align="center">
